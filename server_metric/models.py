@@ -21,8 +21,12 @@ class Server(models.Model):
     environment=models.CharField(max_length=30,choices=ENVIRONMENT_CHOICES,default='dev')
     status=models.CharField(max_length=20, choices=STATUS_CHOICES,default='up')
 
+    class Meta:
+        ordering=['-hostname']
+
+
     def __str__(self):
-        return f"{self.hostname}-{self.IP} --{self.enviroment}-{self.status}"
+        return f"{self.hostname}-{self.IP} --{self.environment}-{self.status}"
 
 
 class MetricLog(models.Model):
